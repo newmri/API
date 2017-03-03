@@ -142,15 +142,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ExceptionHandling.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainSelect.cpp" />
     <ClCompile Include="Question2.cpp" />
+    <ClCompile Include="Question3.cpp" />
     <ClCompile Include="Questions.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.h" />
+    <ClInclude Include="ExceptionHandling.h" />
     <ClInclude Include="MainSelect.h" />
     <ClInclude Include="Question2.h" />
+    <ClInclude Include="Question3.h" />
     <ClInclude Include="Questions.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

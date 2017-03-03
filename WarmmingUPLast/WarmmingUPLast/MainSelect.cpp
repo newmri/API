@@ -6,6 +6,10 @@ bool MainSelect()
 
 	cout << "Select number: ";
 	cin >> select;
+
+	bool except = ExceptionHandling();
+	if (!except) return false;
+
 	switch (select) {
 	case 0:
 		cout << "Exit..." << endl;
@@ -21,8 +25,12 @@ bool MainSelect()
 		quest2.GetCommand();
 		break;
 	}
-	case 3:
+	case 3: {
+		Question3 quest3;
+		quest3.GetSentence();
+		quest3.ShowSentence();
 		break;
+	}
 	case 4:
 		break;
 	case 5:

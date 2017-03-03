@@ -12,11 +12,11 @@ void Question2::GetData()
 {
 	cout << "Input Number: ";
 	cin >> m_select;
+	m_oldselect = m_select;
 }
 
 void Question2::GeneratePadding()
 {
-	
 	unsigned int cnt{};
 	unsigned int chk{};
 	int temp{};
@@ -61,9 +61,11 @@ void Question2::GetCommand()
 	while (true) {
 
 		cin.ignore();
+		ShowCommand();
 
 		cout << "Command: ";
 		cin >> m_commandselect;
+
 		switch (m_commandselect) {
 		case 'Q':
 			cout << "Quit..." << endl;;
@@ -87,6 +89,11 @@ void Question2::GetCommand()
 		case 'I':
 			cout << "Min: ";
 			ShowMinVal();
+			break;
+		case 'S':
+			InitArray();
+			GeneratePadding();
+			ShowGeneratedPadding();
 			break;
 		default:
 			cout << "Error!" << endl;
@@ -146,4 +153,16 @@ void Question2::ShowMinVal()
 	m_minval = temp;
 	cout << m_minval << endl;
 
+}
+
+void Question2::InitArray()
+{
+	for (int i = 0; i < MAX_ARRAY; i++) m_array[i] = 0;
+	if (m_oldselect != m_select) m_select = m_oldselect;
+}
+
+void Question2::ShowCommand()
+{
+	cout << "A: OrderByAscending, D: OrderByDescending, R: OrderByRandom " << endl;
+	cout << "M: ShowMaxValue, I: ShowMinValue, S: RegenerateAndShowPadding" << endl;
 }

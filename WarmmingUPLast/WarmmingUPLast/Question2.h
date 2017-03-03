@@ -12,6 +12,7 @@ class Question2
 private:
 	unsigned int m_array[20];
 	unsigned int m_select;
+	unsigned int m_oldselect;
 	unsigned int m_maxval;
 	unsigned int m_minval;
 	char m_commandselect;
@@ -26,9 +27,9 @@ public:
 	void GetCommand();
 	void OrderByAsc();
 	void OrderByDesc();
-	void ReArray();
+	void RandomOrder();
 	void ShowMaxVal();
 	void ShowMinVal();
-	void ReGenerate();
-
+	void InitArray();
+	void ShowCommand();
 };
