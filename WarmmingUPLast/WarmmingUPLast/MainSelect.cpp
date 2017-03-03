@@ -29,6 +29,7 @@ bool MainSelect()
 		Question3 quest3;
 		quest3.GetSentence();
 		quest3.ShowSentence();
+		quest3.ModifySentence();
 		break;
 	}
 	case 4:

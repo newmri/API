@@ -6,6 +6,8 @@ Question2::Question2()
 	m_select = 0;
 	m_maxval = 0;
 	m_minval = 0;
+	m_oldselect = 0;
+	m_commandselect = 0;
 }
 
 void Question2::GetData()
