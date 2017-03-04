@@ -3,5 +3,5 @@
 
 #define MAX_NUM 1000
 
-void ShowMultipleResult(void); // 1 Question
+void ShowMultipleResult(void); // Question 1
 
