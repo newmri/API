@@ -27,7 +27,7 @@ public:
 	void GetCommand();
 	void OrderByAsc();
 	void OrderByDesc();
-	void RandomOrder();
+	void OrderByRandom();
 	void ShowMaxVal();
 	void ShowMinVal();
 	void InitArray();

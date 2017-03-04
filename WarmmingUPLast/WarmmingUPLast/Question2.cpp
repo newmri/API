@@ -2,7 +2,7 @@
 
 Question2::Question2()
 {
-	for (int i = 0; i < MAX_ARRAY; i++) m_array[i] = 0;
+	for (int i = 0; i < MAX_ARRAY; ++i) m_array[i] = 0;
 	m_select = 0;
 	m_maxval = 0;
 	m_minval = 0;
@@ -48,13 +48,13 @@ void Question2::GeneratePadding()
 void Question2::ShowGeneratedPadding()
 {
 	cout << "Generated numbers: ";
-	for (int i = 0; i < MAX_ARRAY; i++) cout << m_array[i] << " ";
+	for (int i = 0; i < MAX_ARRAY; ++i) cout << m_array[i] << " ";
 	cout << endl;
 }
 
 void Question2::ShowPadding()
 {
-	for (int i = 0; i < MAX_ARRAY; i++) cout << m_array[i] << " ";
+	for (int i = 0; i < MAX_ARRAY; ++i) cout << m_array[i] << " ";
 	cout << endl;
 }
 
@@ -83,6 +83,9 @@ void Question2::GetCommand()
 			ShowPadding();
 			break;
 		case 'R':
+			cout << "OrderByRandom: ";
+			OrderByRandom();
+			ShowPadding();
 			break;
 		case 'M':
 			cout << "Max: ";
@@ -135,10 +138,32 @@ void Question2::OrderByDesc()
 	}
 }
 
+void Question2::OrderByRandom()
+{
+	unsigned int lvalue{};
+	unsigned int rvalue{};
+	unsigned int temp{};
+
+	srand((unsigned)time(NULL));
+
+	
+	for (int i = 0; i < MAX_ARRAY; ++i) {
+		lvalue = rand() % MAX_ARRAY;
+		rvalue = rand() % MAX_ARRAY;
+		
+		if (lvalue != rvalue) {
+			temp = m_array[lvalue];
+			m_array[lvalue] = m_array[rvalue];
+			m_array[rvalue] = temp;
+		}
+	}
+
+}
+
 void Question2::ShowMaxVal()
 {
 	unsigned int temp=m_array[0];
-	for (int i = 1; i < MAX_ARRAY; i++) {
+	for (int i = 1; i < MAX_ARRAY; ++i) {
 		if (temp < m_array[i]) temp = m_array[i];
 	}
 	m_maxval = temp;
@@ -149,7 +174,7 @@ void Question2::ShowMaxVal()
 void Question2::ShowMinVal()
 {
 	unsigned int temp = m_array[0];
-	for (int i = 1; i < MAX_ARRAY; i++) {
+	for (int i = 1; i < MAX_ARRAY; ++i) {
 		if (temp > m_array[i]) temp = m_array[i];
 	}
 	m_minval = temp;
@@ -159,7 +184,7 @@ void Question2::ShowMinVal()
 
 void Question2::InitArray()
 {
-	for (int i = 0; i < MAX_ARRAY; i++) m_array[i] = 0;
+	for (int i = 0; i < MAX_ARRAY; ++i) m_array[i] = 0;
 	if (m_oldselect != m_select) m_select = m_oldselect;
 }
 
