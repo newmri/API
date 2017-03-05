@@ -6,18 +6,17 @@
 class Question4
 {
 private:
-	unsigned int m_select;
-	unsigned int m_row;
+	int** m_parr;
 	unsigned int m_column;
-
+	unsigned int m_row;
 
 public:
 	void StoreData(int**, int, int);
 	void ShowCommand();
-	void MultiplyTwoToOdd();
-	void MultiplyThreeToEven();
+	void MultiplyTwoToOdd(int**);
+	void MultiplyThreeToEven(int**);
 	void AddFourToMatrix();
-	void ResetMatrix();
+	void ResetMatrix(int**);
 	void DeleteMatrix(int**, int);
 
 

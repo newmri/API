@@ -56,9 +56,10 @@ bool MainSelect()
 		quest4.StoreData(arr,column,row);
 
 		for (int i = 0; i < column; ++i) {
-			for (int j = 0; j < row; ++j) cout << arr[i][j] << " ";
+			for (int j = 0; j < row; ++j) cout << arr[i][j] << "  ";
 			cout << endl;
 		}
+
 		while (true) {
 			quest4.ShowCommand();
 			cin >> select;
@@ -66,12 +67,33 @@ bool MainSelect()
 			switch (select) {
 
 			case 1:
+				quest4.MultiplyTwoToOdd(arr);
+		
+				for (int i = 0; i < column; ++i) {
+					for (int j = 0; j < row; ++j) cout << arr[i][j] << "  ";
+					cout << endl;
+				}
+
 				break;
 			case 2:
+				quest4.MultiplyThreeToEven(arr);
+
+				for (int i = 0; i < column; ++i) {
+					for (int j = 0; j < row; ++j) cout << arr[i][j] << "  ";
+					cout << endl;
+				}
+
 				break;
 			case 3:
 				break;
 			case 4:
+				quest4.ResetMatrix(arr);
+
+				for (int i = 0; i < column; ++i) {
+					for (int j = 0; j < row; ++j) cout << arr[i][j] << "  ";
+					cout << endl;
+				}
+
 				break;
 
 			}
