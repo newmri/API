@@ -15,7 +15,7 @@ public:
 	void ShowCommand();
 	void MultiplyTwoToOdd(int**);
 	void MultiplyThreeToEven(int**);
-	void AddFourToMatrix();
+	void AddFourToMatrix(int**);
 	void ResetMatrix(int**);
 	void DeleteMatrix(int**, int);
 

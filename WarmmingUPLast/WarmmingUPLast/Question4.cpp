@@ -23,11 +23,12 @@ void Question4::StoreData(int** parr, int column, int row)
 		}
 		
 		m_parr = tempparr;
-	
+
 }
 
 void Question4::ShowCommand()
 {
+	cout << "Command 0: Exit" << endl;
 	cout << "Command 1: Multiply number two to column of odd and print out" << endl;
 	cout << "Command 2: Multiply number three to row of even and print out" << endl;
 	cout << "Command 3: Add number four to matrix and print out" << endl;
@@ -64,6 +65,16 @@ void Question4::ResetMatrix(int** parr)
 	}
 
 }
+
+void Question4::AddFourToMatrix(int** parr)
+{
+	for (int i = 0; i < m_column; ++i) {
+		for (int j = 0; j < m_row; ++j) {
+			if (1 == i && 1 == j) parr[i][j] += 4;
+		}
+	}
+}
+
 void Question4::DeleteMatrix(int** parr, int column)
 {
 	for (int i = 0; i < column; ++i) {

@@ -7,8 +7,7 @@ bool MainSelect()
 	cout << "Select number: ";
 	cin >> select;
 
-	bool except = ExceptionHandling();
-	if (!except) return false;
+	if (!ExceptionHandling()) return false;
 
 	switch (select) {
 	case 0:
@@ -64,8 +63,12 @@ bool MainSelect()
 			quest4.ShowCommand();
 			cin >> select;
 
-			switch (select) {
+			if (!ExceptionHandling()) return false;
 
+			switch (select) {
+			case 0:
+				cout << "Exit..." << endl;
+				return false;
 			case 1:
 				quest4.MultiplyTwoToOdd(arr);
 		
@@ -85,6 +88,12 @@ bool MainSelect()
 
 				break;
 			case 3:
+				quest4.AddFourToMatrix(arr);
+				for (int i = 0; i < column; ++i) {
+					for (int j = 0; j < row; ++j) cout << arr[i][j] << "  ";
+					cout << endl;
+				}
+
 				break;
 			case 4:
 				quest4.ResetMatrix(arr);
@@ -96,6 +105,9 @@ bool MainSelect()
 
 				break;
 
+			default:
+				cout << "Error has been occured!" << endl;
+				return false;
 			}
 
 		}
