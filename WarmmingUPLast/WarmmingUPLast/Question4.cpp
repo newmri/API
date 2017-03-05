@@ -1,5 +1,13 @@
 #include "Question4.h"
 
+
+Question4::Question4()
+{
+	m_parr = nullptr;
+	m_column = 0;
+	m_row = 0;
+}
+
 void Question4::StoreData(int** parr, int column, int row)
 {
 	srand((unsigned)time(NULL));

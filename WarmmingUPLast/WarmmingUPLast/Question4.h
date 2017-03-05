@@ -11,6 +11,7 @@ private:
 	unsigned int m_row;
 
 public:
+	Question4();
 	void StoreData(int**, int, int);
 	void ShowCommand();
 	void MultiplyTwoToOdd(int**);
