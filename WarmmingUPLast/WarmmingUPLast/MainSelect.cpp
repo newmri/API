@@ -115,12 +115,21 @@ bool MainSelect()
 		break;
 	}
 		
-	case 5:
+	case 5: {
+		Question5 quest5;
+
+		if (quest5.GetEquation()) quest5.CalculateByOperator();
+
 		break;
+	}
 	case 6:
 		break;
-	case 7:
+	case 7: {
+		Question7 quest7;
+		quest7.GetAndSetTurn();
+		quest7.PlayGame();
 		break;
+	}
 	case 8:
 		break;
 	case 9:
@@ -135,6 +144,9 @@ bool MainSelect()
 		cout << "Error has been occured!" << endl;
 		return false;
 	}
+
+	cin.ignore();
+	cin.clear();
 	return true;
 
 }

@@ -15,6 +15,7 @@ void Question2::GetData()
 	cout << "Input Number: ";
 	cin >> m_select;
 	m_oldselect = m_select;
+	
 }
 
 void Question2::GeneratePadding()
@@ -63,6 +64,8 @@ void Question2::GetCommand()
 	while (true) {
 
 		cin.ignore();
+		cin.clear();
+
 		ShowCommand();
 
 		cout << "Command: ";
