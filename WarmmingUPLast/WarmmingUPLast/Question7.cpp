@@ -68,8 +68,8 @@ void Question7::PlayGame()
 				if (!m_pchk) {
 					if (30 == m_count) {
 						m_count += 1;
-						cout << "Computer2: " << m_count << endl;
-						cout << "Computer2 Lost!" << endl;
+						cout << "Computer1: " << m_count << endl;
+						cout << "Computer1 Lost!" << endl;
 						m_pchk = false;
 						return;
 					}
@@ -197,9 +197,9 @@ void Question7::PlayGame()
 
 				
 			}
-				m_numcount = 0;
+				
 		}
-		
+		m_numcount = 0;
 
 	}
 
