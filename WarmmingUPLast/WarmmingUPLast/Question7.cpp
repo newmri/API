@@ -8,6 +8,7 @@ Question7::Question7()
 	m_numcount = 0;
 	m_index = 0;
 	m_pchk = false;
+	m_gamestart = true;
 }
 
 void Question7::GetAndSetTurn()
@@ -47,65 +48,139 @@ void Question7::PlayGame()
 				else if ((m_index == 3 || m_index == 4) && m_numcount != 3) m_numcount = 2;
 				else m_numcount = 3;
 
-				
-				if (10 < m_count) {
+
+
+				if (8 == m_index) {
 					cin.ignore();
 					cin.clear();
 				}
 
-				m_count += 1;
+				if (31 == m_count) {
+					cout << "You lost" << endl;
+					return;
+				}
+
+				if (m_count != 30 || m_count != 29) { m_count += 1; }
 				break;
 			}
 
 			case COM1: {
-
+				bool skip = false;
 				srand((unsigned)time(NULL));
 				int temp{};
 				temp = (rand() % MAX_NUM) + 1;
+
 
 				if (m_pchk) {
 					while (true) {
 						temp = (rand() % MAX_NUM) + 1;
 
-						if (temp != m_numcount) break;
+						if (temp != m_numcount) {
+							if (30 == m_count) {
+								cout << "Computer1: " << m_count << endl;
+								skip = true;
+								break;
+							}
+							if (31 == m_numcount + temp) continue;
+							else break;
+						}
 
 					}
 				}
-				cout << "Computer1: ";
-				for (int i = 0; i < temp; ++i, ++m_count) {
-					cout << m_count << " ";
+				
+					while (31 == (m_numcount + temp-1)) temp = (rand() % MAX_NUM) + 1;
+					
+				
+				if (!skip) {
+					cout << "Computer1: ";
+
+					for (int i = 0; i < temp; ++i, m_count++) {
+						if (m_count != 31 || m_count != 30 || m_count != 29) {
+							if (m_count == 31) {
+								cout << m_count << endl;
+								cout << "Computer1 Lost!" << endl;
+								m_pchk = false;
+								return;
+							}
+							cout << m_count << " ";
+						}
+						else m_count++;
+
+						if (31 <= m_count) {
+							cout << m_count << endl;
+							cout << "Computer1 Lost!" << endl;
+
+							m_pchk = false;
+							return;
+						}
+					}
+
+					cout << endl;
+
+
+
 				}
-				cout << endl;
 				m_pchk = false;
 				break;
+
 			}
 
 			case COM2:
-
+				bool skip = false;
 				srand((unsigned)time(NULL));
 
 				int temp{};
 				temp = (rand() % MAX_NUM) + 1;
 				if (m_pchk) {
-				while (true) {
-					temp = (rand() % MAX_NUM) + 1;
+					while (true) {
+						temp = (rand() % MAX_NUM) + 1;
+						if (temp != m_numcount) {
+							if (30 == m_count) {
+								cout << "Computer2: " << m_count << endl;
+								skip = true;
+								break;
+							}
+							if (temp != m_numcount) {
+								if (31 == m_numcount + temp) continue;
+								else break;
+							}
 
-					if (temp != m_numcount) break;
+						}
+					}
+				}
+				while (31 == (m_numcount + temp - 1)) temp = (rand() % MAX_NUM) + 1;
+				if (!skip) {
+					cout << "Computer2: ";
+					for (int i = 0; i < temp; ++i, m_count++) {
+						if (m_count != 31 || m_count != 30 || m_count != 29) {
+							if (m_count == 31) {
+								cout << m_count << endl;
+								cout << "Computer2 Lost!" << endl;
+								m_pchk = false;
+								return;
+							}
+							cout << m_count << " ";
+						}
+						else m_count++;
+
+						if (31 <= m_count) {
+							cout << m_count << endl;
+							cout << "Computer2 Lost!" << endl;
+							m_pchk = false;
+							return;
+						}
+					}
+					cout << endl;
 
 				}
-			}
-				cout << "Computer2: ";
-				for (int i = 0; i < temp; ++i, ++m_count) {
-					cout << m_count << " ";
-				}
-				cout << endl;
-				m_pchk = false;
-				break;
+					m_pchk = false;
+					break;
 
+				
 			}
-
+				m_numcount = 0;
 		}
-		m_numcount = 0;
+		
 
 	}
 

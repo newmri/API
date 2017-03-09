@@ -16,6 +16,7 @@ private:
 	unsigned int m_numcount;
 	unsigned int m_index;
 	bool m_pchk;
+	bool m_gamestart;
 	char m_num[MAX_ARRAY];
 public:
 	Question7();

@@ -145,8 +145,8 @@ bool MainSelect()
 		return false;
 	}
 
-	cin.ignore();
-	cin.clear();
+	//cin.ignore();
+	//cin.clear();
 	return true;
 
 }
