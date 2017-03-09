@@ -65,6 +65,16 @@ void Question7::PlayGame()
 			}
 
 			case COM1: {
+				if (!m_pchk) {
+					if (30 == m_count) {
+						m_count += 1;
+						cout << "Computer2: " << m_count << endl;
+						cout << "Computer2 Lost!" << endl;
+						m_pchk = false;
+						return;
+					}
+				}
+
 				bool skip = false;
 				srand((unsigned)time(NULL));
 				int temp{};
@@ -126,6 +136,15 @@ void Question7::PlayGame()
 			}
 
 			case COM2:
+				if (!m_pchk) {
+					if (30 == m_count) {
+						m_count += 1;
+						cout << "Computer2: " << m_count << endl;
+						cout << "Computer2 Lost!" << endl;
+						m_pchk = false;
+						return;
+					}
+				}
 				bool skip = false;
 				srand((unsigned)time(NULL));
 
