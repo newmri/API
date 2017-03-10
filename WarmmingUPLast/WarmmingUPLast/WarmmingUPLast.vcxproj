@@ -145,6 +145,7 @@
     <ClCompile Include="ExceptionHandling.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainSelect.cpp" />
+    <ClCompile Include="Question10.cpp" />
     <ClCompile Include="Question2.cpp" />
     <ClCompile Include="Question3.cpp" />
     <ClCompile Include="Question4.cpp" />
@@ -159,6 +160,7 @@
     <ClInclude Include="Common.h" />
     <ClInclude Include="ExceptionHandling.h" />
     <ClInclude Include="MainSelect.h" />
+    <ClInclude Include="Question10.h" />
     <ClInclude Include="Question2.h" />
     <ClInclude Include="Question3.h" />
     <ClInclude Include="Question4.h" />

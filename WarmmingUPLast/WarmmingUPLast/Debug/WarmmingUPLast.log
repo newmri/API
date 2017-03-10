@@ -1,5 +1,4 @@
-﻿  Question9.cpp
-s:\kpu\4-1\api\warmminguplast\warmminguplast\question9.cpp(27): warning C4101: 'temparr': unreferenced local variable
+﻿  Question10.cpp
   MainSelect.cpp
 s:\kpu\4-1\api\warmminguplast\warmminguplast\question7.h(6): warning C4005: 'MAX_NUM': macro redefinition
   s:\kpu\4-1\api\warmminguplast\warmminguplast\questions.h(4): note: see previous definition of 'MAX_NUM'

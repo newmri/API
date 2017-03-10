@@ -143,8 +143,11 @@ bool MainSelect()
 		quest9.ShowResult();
 		break;
 	}
-	case 10:
+	case 10: {
+		Question10 quest10;
+		quest10.GetYear();
 		break;
+	}
 	case 11:
 		break;
 	case 12:
