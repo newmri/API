@@ -117,8 +117,12 @@ bool MainSelect()
 		
 	case 5: {
 		Question5 quest5;
-
-		if (quest5.GetEquation()) quest5.CalculateByOperator();
+		bool escape = false;
+		while (true) {
+			escape = quest5.GetEquation();
+			if (escape) break;
+		}
+		quest5.CalculateByOperator();
 
 		break;
 	}
@@ -132,8 +136,13 @@ bool MainSelect()
 	}
 	case 8:
 		break;
-	case 9:
+	case 9: {
+		Question9 quest9;
+		quest9.GetNumber();
+		quest9.Process();
+		quest9.ShowResult();
 		break;
+	}
 	case 10:
 		break;
 	case 11:
