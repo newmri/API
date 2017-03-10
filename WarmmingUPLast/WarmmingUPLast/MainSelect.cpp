@@ -134,8 +134,12 @@ bool MainSelect()
 		quest7.PlayGame();
 		break;
 	}
-	case 8:
+	case 8: {
+		Question8 quest8;
+		quest8.GetYear();
+		//quest8.IsLeapYear();
 		break;
+	}
 	case 9: {
 		Question9 quest9;
 		quest9.GetNumber();

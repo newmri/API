@@ -3,7 +3,7 @@
 
 class Question10
 {
-private:
+protected:
 	unsigned short m_year;
 	unsigned short m_month;
 	unsigned short m_day;
