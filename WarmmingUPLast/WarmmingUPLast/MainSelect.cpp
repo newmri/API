@@ -154,8 +154,14 @@ bool MainSelect()
 	}
 	case 11:
 		break;
-	case 12:
+	case 12: {
+		Question12 quest12;
+		while (true) {
+			quest12.ShowMap();
+			//quest12.GoToXY(1, 6);
+		}
 		break;
+	}
 	default:
 		cout << "Error has been occured!" << endl;
 		return false;

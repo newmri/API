@@ -1,3 +1,31 @@
-﻿  LINK : S:\KPU\4-1\API\WarmmingUPLast\Debug\WarmmingUPLast.exe not found or not built by the last incremental link; performing full link
+﻿  MainSelect.cpp
+s:\kpu\4-1\api\warmminguplast\warmminguplast\question7.h(6): warning C4005: 'MAX_NUM': macro redefinition
+  s:\kpu\4-1\api\warmminguplast\warmminguplast\questions.h(4): note: see previous definition of 'MAX_NUM'
+s:\kpu\4-1\api\warmminguplast\warmminguplast\question7.h(7): warning C4005: 'MAX_ARRAY': macro redefinition
+  s:\kpu\4-1\api\warmminguplast\warmminguplast\question2.h(8): note: see previous definition of 'MAX_ARRAY'
+s:\kpu\4-1\api\warmminguplast\warmminguplast\question9.h(5): warning C4005: 'MAX_NUM': macro redefinition
+  s:\kpu\4-1\api\warmminguplast\warmminguplast\question7.h(6): note: see previous definition of 'MAX_NUM'
+s:\kpu\4-1\api\warmminguplast\warmminguplast\mainselect.cpp(50): warning C4018: '<': signed/unsigned mismatch
+s:\kpu\4-1\api\warmminguplast\warmminguplast\mainselect.cpp(57): warning C4018: '<': signed/unsigned mismatch
+s:\kpu\4-1\api\warmminguplast\warmminguplast\mainselect.cpp(58): warning C4018: '<': signed/unsigned mismatch
+s:\kpu\4-1\api\warmminguplast\warmminguplast\mainselect.cpp(75): warning C4018: '<': signed/unsigned mismatch
+s:\kpu\4-1\api\warmminguplast\warmminguplast\mainselect.cpp(76): warning C4018: '<': signed/unsigned mismatch
+s:\kpu\4-1\api\warmminguplast\warmminguplast\mainselect.cpp(84): warning C4018: '<': signed/unsigned mismatch
+s:\kpu\4-1\api\warmminguplast\warmminguplast\mainselect.cpp(85): warning C4018: '<': signed/unsigned mismatch
+s:\kpu\4-1\api\warmminguplast\warmminguplast\mainselect.cpp(92): warning C4018: '<': signed/unsigned mismatch
+s:\kpu\4-1\api\warmminguplast\warmminguplast\mainselect.cpp(93): warning C4018: '<': signed/unsigned mismatch
+s:\kpu\4-1\api\warmminguplast\warmminguplast\mainselect.cpp(101): warning C4018: '<': signed/unsigned mismatch
+s:\kpu\4-1\api\warmminguplast\warmminguplast\mainselect.cpp(102): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+  Compiling...
+  main.cpp
+s:\kpu\4-1\api\warmminguplast\warmminguplast\question7.h(6): warning C4005: 'MAX_NUM': macro redefinition
+  s:\kpu\4-1\api\warmminguplast\warmminguplast\questions.h(4): note: see previous definition of 'MAX_NUM'
+s:\kpu\4-1\api\warmminguplast\warmminguplast\question7.h(7): warning C4005: 'MAX_ARRAY': macro redefinition
+  s:\kpu\4-1\api\warmminguplast\warmminguplast\question2.h(8): note: see previous definition of 'MAX_ARRAY'
+s:\kpu\4-1\api\warmminguplast\warmminguplast\question9.h(5): warning C4005: 'MAX_NUM': macro redefinition
+  s:\kpu\4-1\api\warmminguplast\warmminguplast\question7.h(6): note: see previous definition of 'MAX_NUM'
+  Question12.cpp
+  Generating Code...
   WarmmingUPLast.vcxproj -> S:\KPU\4-1\API\WarmmingUPLast\Debug\WarmmingUPLast.exe
   WarmmingUPLast.vcxproj -> S:\KPU\4-1\API\WarmmingUPLast\Debug\WarmmingUPLast.pdb (Full PDB)
