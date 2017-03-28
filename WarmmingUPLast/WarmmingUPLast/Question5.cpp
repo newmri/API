@@ -49,13 +49,13 @@ bool Question5::GetEquation()
 
 		cin >> m_equation;
 		CheckError();
-
+		
 		if (m_errchk) {
 			cout << "Error has been ocuured bud! Ex) 1+2+3+4" << endl;
 			return false;
 		}
 
-	
+	DevideEquation();
 	return true;
 
 
@@ -64,34 +64,67 @@ bool Question5::GetEquation()
 void Question5::DevideEquation()
 {
 
-	/*
-	* = 42
-	+ = 43
-	- = 45
-	/ = 47
-	*/
 	for (int i = 0; i < MAX_SIZE; ++i) {
-		
-		switch (m_temparray[1]) {
-
+		switch (m_equation[i]) {
 		case '*':
-			m_result = m_lvalue*m_rvalue;
+			m_temparray[i - 1] = atoi(&m_equation[i - 1]);
+			m_temparray[i] = 7;
+			m_temparray[i + 1] = atoi(&m_equation[i + 1]);
 			break;
 		case '/':
-			m_result = m_lvalue / m_rvalue;
+			m_temparray[i - 1] = atoi(&m_equation[i - 1]);
+			m_temparray[i] = 6;
+			m_temparray[i + 1] = atoi(&m_equation[i + 1]);
 			break;
 		case '+':
-			m_result = m_lvalue + m_rvalue;
+			m_temparray[i - 1] = atoi(&m_equation[i - 1]);
+			m_temparray[i] = 5;
+			m_temparray[i + 1] = atoi(&m_equation[i + 1]);
 			break;
 		case '-':
-			m_result = m_lvalue - m_rvalue;
+			m_temparray[i - 1] = atoi(&m_equation[i - 1]);
+			m_temparray[i] = 4;
+			m_temparray[i + 1] = atoi(&m_equation[i + 1]);
 			break;
+		}
 
+	}
+
+	unsigned int tmp{};
+	unsigned int tem2{};
+	for (int i = 0; i < MAX_SIZE; i++) {
+		for (int j = 0; j < MAX_SIZE - i - 1; j++) {
+			if (j & 1 == 1) {
+				if (m_temparray[j] < m_temparray[j + 2]) {
+					tmp = m_temparray[j];
+					m_temparray[j] = m_temparray[j + 2];
+					m_temparray[j + 2] = tmp;
+
+					tem2 = m_temparray[j - 1];
+					m_temparray[j - 1] = m_temparray[j + 1];
+					m_temparray[j + 1] = tem2;
+
+					tem2 = m_temparray[j +1];
+					m_temparray[j + 1] = m_temparray[j + 3];
+					m_temparray[j + 3] = tem2;
+				}
+			}
 		}
 	}
 
 	
-}
+	
+	for (int i = 0; i < MAX_SIZE; ++i) {
+		cout << m_temparray[i] << endl;
+	}
+	//m_temparray[MAX_SIZE] = '\0';
+	//cout << m_temparray << endl;
+	}
+
+
+
+	
+
 
 void Question5::CalculateByOperator()
 {

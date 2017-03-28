@@ -10,7 +10,7 @@ class Question5
 {
 private:
 	char m_equation[MAX_SIZE];
-	int m_temparray[MAX_TEMP_ARRAY_SIZE];
+	unsigned int m_temparray[MAX_SIZE];
 
 	unsigned int m_lvalue;
 	unsigned int m_rvalue;

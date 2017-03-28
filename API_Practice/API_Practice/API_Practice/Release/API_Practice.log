@@ -1,0 +1,3 @@
+﻿  1-1.cpp
+1-1.cpp(4): error C2440: 'initializing': cannot convert from 'const char [20]' to 'LPCTSTR'
+  1-1.cpp(4): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast

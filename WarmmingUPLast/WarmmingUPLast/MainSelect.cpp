@@ -126,8 +126,11 @@ bool MainSelect()
 
 		break;
 	}
-	case 6:
+	case 6: {
+		Question6 quest6;
+		quest6.GetPoint();
 		break;
+	}
 	case 7: {
 		Question7 quest7;
 		quest7.GetAndSetTurn();
@@ -152,8 +155,11 @@ bool MainSelect()
 		quest10.GetYear();
 		break;
 	}
-	case 11:
+	case 11: {
+		Question11 quest11;
+		quest11.ShowResult();
 		break;
+	}
 	case 12: {
 		Question12 quest12;
 		while (true) {
