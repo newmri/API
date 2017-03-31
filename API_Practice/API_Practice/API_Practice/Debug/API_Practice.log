@@ -1,3 +1,5 @@
-﻿  2-4.cpp
+﻿  2-7.cpp
+s:\kpu\4-1\api\api_practice\api_practice\api_practice\2-7.cpp(276): warning C4244: '-=': conversion from 'LONG' to 'unsigned short', possible loss of data
+s:\kpu\4-1\api\api_practice\api_practice\api_practice\2-7.cpp(286): warning C4244: '+=': conversion from 'LONG' to 'unsigned short', possible loss of data
   API_Practice.vcxproj -> S:\KPU\4-1\API\API_Practice\API_Practice\Debug\API_Practice.exe
   API_Practice.vcxproj -> S:\KPU\4-1\API\API_Practice\API_Practice\Debug\API_Practice.pdb (Partial PDB)
