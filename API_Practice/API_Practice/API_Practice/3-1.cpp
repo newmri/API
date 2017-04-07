@@ -54,10 +54,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdPa
 
 struct STWarms
 {
-	USHORT m_wHeadTopY{}, m_wHeadBottomY{ FIRST_Y};
+	USHORT m_wHeadTopY{ FIRST_Y }, m_wHeadBottomY{ FIRST_Y * 2};
 	USHORT m_wHeadLeftX{ FIRST_X }, m_wHeadRightX{ FIRST_X + INCREMENT };
 
-	USHORT m_wBodyTopY{}, m_wBodyBottomY{ FIRST_Y };
+	USHORT m_wBodyTopY{ FIRST_Y }, m_wBodyBottomY{ FIRST_Y * 2 };
 	USHORT m_wBodyLeftX{}, m_wBodyRightX{ FIRST_X };
 
 	bool bGoToLeft = false;
@@ -66,11 +66,13 @@ struct STWarms
 	bool bJumpOn = false;
 	bool bIsCreated = false;
 	bool bHaveBody = false;
+	bool bLeftGrowHead = false;
+	bool bRightGrowHead = false;
 };
 
 struct STWarmsSwap
 {
-	USHORT m_wTopY{}, m_wBottomY{ FIRST_Y };
+	USHORT m_wTopY{ FIRST_Y }, m_wBottomY{ FIRST_Y * 2 };
 	USHORT m_wLeftX{}, m_wRightX{ FIRST_X };
 };
 
@@ -133,18 +135,57 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 	}
 	case WM_KEYDOWN:
 		switch (wParam) {
-		case VK_LEFT: stWarms.bHM = true; stWarms.bGoToLeft = true; InvalidateRect(hWnd, NULL, TRUE);
+		case VK_LEFT: stWarms.bHM = true; stWarms.bGoToLeft = true; 
+			if (stWarms.m_wHeadBottomY - stWarms.m_wHeadTopY != 40) {
+				stWarms.m_wHeadBottomY -= 10;
+				stWarms.m_wHeadTopY += 10;
+				stWarms.m_wHeadLeftX += 20;
+			}
 			stWarms.m_wBodyLeftX = stWarms.m_wHeadRightX; stWarms.m_wBodyRightX = stWarms.m_wBodyLeftX + INCREMENT; 
-			stWarms.m_wBodyTopY = stWarms.m_wHeadTopY; stWarms.m_wBodyBottomY = stWarms.m_wHeadBottomY; break;
-		case VK_RIGHT: stWarms.bHM = true; stWarms.bGoToLeft = false; InvalidateRect(hWnd, NULL, TRUE);
+			stWarms.m_wBodyTopY = stWarms.m_wHeadTopY; stWarms.m_wBodyBottomY = stWarms.m_wHeadBottomY; 
+			InvalidateRect(hWnd, NULL, TRUE); break;
+		case VK_RIGHT: stWarms.bHM = true; stWarms.bGoToLeft = false;
+			if (stWarms.m_wHeadBottomY - stWarms.m_wHeadTopY != 40) {
+				stWarms.m_wHeadBottomY -= 10;
+				stWarms.m_wHeadTopY += 10;
+				stWarms.m_wHeadRightX -= 20;
+			}
+
 			stWarms.m_wBodyLeftX = stWarms.m_wHeadLeftX - INCREMENT; stWarms.m_wBodyRightX = stWarms.m_wHeadLeftX;
-			stWarms.m_wBodyTopY = stWarms.m_wHeadTopY; stWarms.m_wBodyBottomY = stWarms.m_wHeadBottomY; break;
-		case VK_UP: stWarms.bHM = false; stWarms.bGoToBottom = false; InvalidateRect(hWnd, NULL, TRUE);
+			stWarms.m_wBodyTopY = stWarms.m_wHeadTopY; stWarms.m_wBodyBottomY = stWarms.m_wHeadBottomY;
+			InvalidateRect(hWnd, NULL, TRUE); break;
+		case VK_UP: stWarms.bHM = false; stWarms.bGoToBottom = false;
+			if (stWarms.bRightGrowHead) {
+				stWarms.m_wHeadBottomY -= 10;
+				stWarms.m_wHeadTopY += 10;
+				stWarms.m_wHeadLeftX += 20;
+				stWarms.bRightGrowHead = false;
+			}
+			if(stWarms.m_wHeadBottomY - stWarms.m_wHeadTopY != 40){
+				stWarms.m_wHeadBottomY -= 10;
+				stWarms.m_wHeadTopY += 10;
+				stWarms.m_wHeadRightX -= 20;
+				stWarms.bLeftGrowHead = false;
+			}
 			stWarms.m_wBodyTopY = stWarms.m_wHeadBottomY; stWarms.m_wBodyBottomY = stWarms.m_wBodyTopY + INCREMENT;
-			stWarms.m_wBodyLeftX = stWarms.m_wHeadLeftX; stWarms.m_wBodyRightX = stWarms.m_wHeadRightX; break;
-		case VK_DOWN: stWarms.bHM = false; stWarms.bGoToBottom = true; InvalidateRect(hWnd, NULL, TRUE); 
+			stWarms.m_wBodyLeftX = stWarms.m_wHeadLeftX; stWarms.m_wBodyRightX = stWarms.m_wHeadRightX; 
+			InvalidateRect(hWnd, NULL, TRUE); break;
+		case VK_DOWN: stWarms.bHM = false; stWarms.bGoToBottom = true;
+			if (stWarms.bRightGrowHead) {
+				stWarms.m_wHeadBottomY -= 10;
+				stWarms.m_wHeadTopY += 10;
+				stWarms.m_wHeadLeftX += 20;
+				stWarms.bRightGrowHead = false;
+			}
+			if (stWarms.m_wHeadBottomY - stWarms.m_wHeadTopY != 40) {
+				stWarms.m_wHeadBottomY -= 10;
+				stWarms.m_wHeadTopY += 10;
+				stWarms.m_wHeadRightX -= 20;
+				stWarms.bLeftGrowHead = false;
+			}
 			stWarms.m_wBodyBottomY = stWarms.m_wHeadTopY; stWarms.m_wBodyTopY = stWarms.m_wBodyBottomY - INCREMENT;
-			stWarms.m_wBodyLeftX = stWarms.m_wHeadLeftX; stWarms.m_wBodyRightX = stWarms.m_wHeadRightX; break;
+			stWarms.m_wBodyLeftX = stWarms.m_wHeadLeftX; stWarms.m_wBodyRightX = stWarms.m_wHeadRightX; 
+			InvalidateRect(hWnd, NULL, TRUE); break;
 		case VK_SPACE:
 			if (!stWarms.bJumpOn) {
 				if (stWarms.m_wHeadTopY != 0) {
@@ -186,6 +227,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 			if (!stWarms.bJumpOn) {
 				// To Right
 				if ((!stWarms.bGoToLeft) && stWarms.bHM) {
+					if (stWarms.m_wHeadBottomY - stWarms.m_wHeadTopY == 40) {
+						stWarms.m_wHeadBottomY += 10;
+						stWarms.m_wHeadTopY -= 10;
+						stWarms.m_wHeadRightX += 20;
+						stWarms.bRightGrowHead = true;
+					}
+					else {
+						stWarms.m_wHeadBottomY -= 10;
+						stWarms.m_wHeadTopY += 10;
+						stWarms.m_wHeadRightX -= 20;
+						stWarms.bRightGrowHead = false;
+					}
+
 					stWarms.m_wHeadLeftX += INCREMENT;
 					stWarms.m_wHeadRightX += INCREMENT;
 					stWarms.m_wBodyLeftX += INCREMENT;
@@ -193,22 +247,50 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 				}
 				// To Left
 				else if ((stWarms.bGoToLeft) && stWarms.bHM) {
+					if (stWarms.m_wHeadBottomY - stWarms.m_wHeadTopY == 40) {
+						stWarms.m_wHeadBottomY += 10;
+						stWarms.m_wHeadTopY -= 10;
+						stWarms.m_wHeadLeftX -= 20;
+						stWarms.bLeftGrowHead = true;
+					}
+					else {
+						stWarms.m_wHeadBottomY -= 10;
+						stWarms.m_wHeadTopY += 10;
+						stWarms.m_wHeadLeftX += 20;
+						stWarms.bLeftGrowHead = false;
+					}
+
 					stWarms.m_wHeadLeftX -= INCREMENT;
 					stWarms.m_wHeadRightX -= INCREMENT;
 					stWarms.m_wBodyLeftX -= INCREMENT;
 					stWarms.m_wBodyRightX -= INCREMENT;
 
+					if (stWarms.m_wHeadLeftX == 60 && stWarms.m_wHeadBottomY - stWarms.m_wHeadTopY != 40) {
+						stWarms.m_wHeadBottomY -= 10;
+						stWarms.m_wHeadTopY += 10;
+						stWarms.m_wHeadLeftX += 20;
+						stWarms.bLeftGrowHead = false;
+						
+					}
+
 				}
 
 				// Right and Left
 				if ((stWarms.m_wHeadRightX + INCREMENT > rectView.right) && stWarms.bHM) {
+					if (stWarms.m_wHeadBottomY - stWarms.m_wHeadTopY != 40) {
+						stWarms.m_wHeadBottomY -= 10;
+						stWarms.m_wHeadTopY += 10;
+						stWarms.m_wHeadRightX -= 20;
+						stWarms.bRightGrowHead = false;
+					}
 					stWarms.bGoToLeft = true;
 					stWarms.m_wHeadLeftX -= INCREMENT;
 					stWarms.m_wHeadRightX -= INCREMENT;
 					stWarms.m_wBodyLeftX = stWarms.m_wHeadRightX;
 					stWarms.m_wBodyRightX = stWarms.m_wBodyLeftX + INCREMENT;
 				}
-				else if ((stWarms.m_wHeadLeftX - INCREMENT < rectView.left) && stWarms.bHM) {
+			
+				if ((stWarms.m_wHeadLeftX - INCREMENT < rectView.left) && stWarms.bHM) {
 					stWarms.bGoToLeft = false;
 					stWarms.m_wHeadLeftX += INCREMENT;
 					stWarms.m_wHeadRightX += INCREMENT;
