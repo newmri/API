@@ -184,12 +184,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 			break;
 		}
 		case VK_CONTROL: {
-			for (int i = 0; i <= pstStr[usIndex].m_usCount; ++i) {
-				if (pstStr[usIndex].m_szStr[i] >= ALPHABET_MIN && pstStr[usIndex].m_szStr[i] <= ALPHABET_MAX) {
-					pstStr[usIndex].m_szStr[i] = pstStr[usIndex].m_szStr[i] + CHAR_DIFFER;
-				}
-				else if (pstStr[usIndex].m_szStr[i] >= ALPHABET_MIN - CHAR_DIFFER && pstStr[usIndex].m_szStr[i] <= ALPHABET_MAX + CHAR_DIFFER) {
-					pstStr[usIndex].m_szStr[i] = pstStr[usIndex].m_szStr[i] - CHAR_DIFFER;
+			for (int i = 0; i <= usIndex; ++i) {
+				for (int j = 0; j <= pstStr[i].m_usCount; ++j) {
+					if (pstStr[i].m_szStr[j] >= ALPHABET_MIN && pstStr[i].m_szStr[j] <= ALPHABET_MAX) {
+						pstStr[i].m_szStr[j] = pstStr[i].m_szStr[j] + CHAR_DIFFER;
+					}
+					else if (pstStr[i].m_szStr[j] >= ALPHABET_MIN - CHAR_DIFFER && pstStr[i].m_szStr[j] <= ALPHABET_MAX + CHAR_DIFFER) {
+						pstStr[i].m_szStr[j] = pstStr[i].m_szStr[j] - CHAR_DIFFER;
+					}
 				}
 			}
 			InvalidateRect(hWnd, NULL, TRUE);
@@ -297,16 +299,17 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		if (bEncryption) pstStr[usIndex].m_bEncryption = true;
 		else pstStr[usIndex].m_bEncryption = false;
 
-		for (int i = 0; i <= usIndex; ++i) {
-			if (pstStr[i].m_bEncryption) {
-				for (int j = pstStr[usIndex].m_usEnd; j < pstStr[i].m_usCount; ++j) {
-					pstStr[i].m_szStr[j] = '*';
+		if (!bNext) {
+			for (int i = 0; i <= usIndex; ++i) {
+				if (pstStr[i].m_bEncryption) {
+					for (int j = pstStr[usIndex].m_usEnd; j < pstStr[i].m_usCount; ++j) {
+						pstStr[i].m_szStr[j] = '*';
+					}
 				}
+				TextOut(hdc, pstStr[i].m_usXpos, pstStr[i].m_usYpos, pstStr[i].m_szStr, strlen(pstStr[i].m_szStr));
+				SetCaretPos(usXpos, usYpos);
 			}
-			TextOut(hdc, pstStr[i].m_usXpos, pstStr[i].m_usYpos, pstStr[i].m_szStr, strlen(pstStr[i].m_szStr));
-			SetCaretPos(usXpos, usYpos);
 		}
-
 		if (bNext) {
 			static char temp[MAX_LINE +1];
 			static char temp2[MAX_LINE];

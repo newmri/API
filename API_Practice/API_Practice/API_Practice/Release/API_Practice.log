@@ -1,3 +1,10 @@
-﻿  1-1.cpp
-1-1.cpp(4): error C2440: 'initializing': cannot convert from 'const char [20]' to 'LPCTSTR'
-  1-1.cpp(4): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+﻿  2-10.cpp
+2-10.cpp(249): warning C4244: '=': conversion from 'LONG' to 'USHORT', possible loss of data
+2-10.cpp(251): warning C4244: '=': conversion from 'LONG' to 'USHORT', possible loss of data
+  Generating code
+  1 of 5 functions (20.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  API_Practice.vcxproj -> S:\KPU\4-1\API\API_Practice\API_Practice\Release\API_Practice.exe
+  API_Practice.vcxproj -> S:\KPU\4-1\API\API_Practice\API_Practice\Release\API_Practice.pdb (Full PDB)

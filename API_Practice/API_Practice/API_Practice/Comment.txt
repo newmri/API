@@ -1,3 +1,5 @@
-1-1 ~ 1-2: Create Window
-2-1 ~ 2-4: TextOut
- 
+1-1 ~ 1-2: Create Windows
+2-1 ~ 2-4: Text out
+2-5 ~ 2-7: NotePad
+2-8 ~ 2-10: Figure
+2-11 ~ : Timer
