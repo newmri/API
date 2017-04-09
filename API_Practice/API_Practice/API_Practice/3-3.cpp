@@ -15,7 +15,8 @@
 #define WINDOW_Y 800
 #define MAX_CAR 3
 #define MOVE 100
-enum { TOP_CAR, MIDDLE_CAR, BOTTOM_CAR };
+enum { TOP_CAR, MIDDLE_CAR, BOTTOM_CAR, STOP };
+enum ELIGHT {eNOTHING, eBLUE, eYELLOW, eRED };
 HINSTANCE g_hInst;
 LPCTSTR lpszClass = "Windows";
 LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam);
@@ -81,42 +82,74 @@ public:
 	void Draw(const HDC& a_hdc) {
 		Rectangle(a_hdc, m_wLeftX, m_wTopY, m_wRightX, m_wBottomY);
 	}
-	void Draw(const HDC& a_hdc,const bool& a_IsStopped) {
+	void Draw(const HDC& a_hdc, const bool& a_IsStopped) {
 		if(a_IsStopped) Rectangle(a_hdc, m_wRLeftX, m_wRTopY, m_wRRightX, m_wRBottomY);
 	}
 	void Move()
 	{	
-		if (m_rect.right - m_wLeftX < MOVE) {
-			m_bDrawRemained = true;
+		if (!m_bToLeft) {
+			if (m_rect.right - m_wLeftX < MOVE) {
+				m_bDrawRemained = true;
 
-			m_wRightX = m_wRightX - m_rect.right;
-			m_wLeftX = 0;
+				m_wRightX = m_wRightX - m_rect.right;
+				m_wLeftX = 0;
+			}
+			else { m_wLeftX += MOVE; m_wRightX += MOVE; }
 		}
-		else { m_wLeftX += MOVE; m_wRightX += MOVE; }
+
+		else {
+			if (m_wLeftX < MOVE) {
+				m_bDrawRemained = true;
+				m_wRightX = m_wLeftX;
+				m_wLeftX = m_rect.left;
+			}
+			else { m_wLeftX -= MOVE; m_wRightX -= MOVE; }
+		}
 	}
 	bool IsRemainedToDraw() { return m_bDrawRemained; }
 	void CheckRemainedToDraw()
 	{
-		if ((m_rect.right - m_wLeftX) < MOVE) {
-			m_wRLeftX = m_wLeftX; m_wRRightX = m_wRightX;
-			m_wRBottomY = m_wBottomY; m_wRTopY = m_wTopY;
-			m_bDrawRemained = true;
-			m_wRightX = m_wRightX - m_rect.right;
-			m_wLeftX = 0;
+		if (!m_bToLeft) {
+			if ((m_rect.right - m_wLeftX) < MOVE) {
+				m_wRLeftX = m_wLeftX; m_wRRightX = m_wRightX;
+				m_wRBottomY = m_wBottomY; m_wRTopY = m_wTopY;
+				m_bDrawRemained = true;
+				m_wRightX = m_wRightX - m_rect.right;
+				m_wLeftX = 0;
+			}
+		}
+		else {
+			if (m_wLeftX == m_rect.right - 64) {
+				m_wRLeftX = m_rect.left;
+				m_wRRightX = MOVE - 64;
+				m_wRBottomY = m_wBottomY; m_wRTopY = m_wTopY;
+				m_bDrawRemained = true;
+			}
 		}
 	}
 	void DrawWhiteRect(const HDC& a_hdc)
 	{
-		Rectangle(a_hdc, m_wLeftX, m_wTopY + 1, m_wRightX - 10, m_wBottomY - 1);
-		m_wRightX = MOVE;
+		if (!m_bToLeft) {
+			Rectangle(a_hdc, m_wLeftX, m_wTopY + 1, m_wRightX - 10, m_wBottomY - 1);
+			m_wRightX = MOVE;
+		}
+		
+		else {
+			Rectangle(a_hdc, m_wRLeftX, m_wRTopY + 1, m_wRRightX - 10, m_wRBottomY - 1);
+			m_wLeftX = m_rect.right - 64;
+			m_wRightX = m_wLeftX + MOVE;
+		}
+		
 		m_bDrawRemained = false;
 	}
-
+	void SetToLeft() { m_bToLeft = true; }
+	bool GetToLeft() { return m_bToLeft; }
 private:
 	USHORT m_wLeftX{}, m_wRightX{ MOVE }, m_wTopY{}, m_wBottomY{};
 	USHORT m_wRLeftX{}, m_wRRightX{}, m_wRTopY{}, m_wRBottomY{};
 	RECT m_rect;
 	bool m_bDrawRemained = false;
+	bool m_bToLeft = false;
 	
 };
 
@@ -127,45 +160,89 @@ public:
 	{
 		m_rect = a_rect;
 
+		m_eLight = eNOTHING;
 		m_wLeftX = m_rect.right / 2 - MOVE;
 		m_wRightX = m_wLeftX + MOVE + 30;
 		m_wTopY = m_rect.top + 10;
 		m_wBottomY = m_wTopY + MOVE / 2;
 	}
+	
 	void Draw(const HDC& a_hdc)
 	{
 		Rectangle(a_hdc, m_wLeftX, m_wTopY, m_wRightX, m_wBottomY);
 
+		DrawBlue(a_hdc);
+		DrawYellow(a_hdc);
+		DrawRed(a_hdc);
+
+		HBRUSH hOldBrush = CreateSolidBrush(RGB(255, 255, 255));
+		SelectObject(a_hdc, hOldBrush);
+	}
+	void SetLight(const ELIGHT& a_eLight) { m_eLight = a_eLight; }
+private:
+	void DrawBlue(const HDC& a_hdc)
+	{
+		HPEN hPen, hOldPen;
+
+		if (m_eLight == eBLUE) {
+			hPen = CreatePen(PS_SOLID, 5, RGB(0, 0, 0));
+			hOldPen = (HPEN)SelectObject(a_hdc, hPen);
+		}
 		HBRUSH hBrush = CreateSolidBrush(RGB(1, 0, 255)); // Blue
 		HBRUSH hOldBrush = (HBRUSH)SelectObject(a_hdc, hBrush);
 		Ellipse(a_hdc, m_wLeftX + 10, m_wTopY + 10, m_wLeftX + 40, m_wBottomY - 10);
-
-		hBrush = CreateSolidBrush(RGB(255, 228, 0)); // Yellow
-		hOldBrush = (HBRUSH)SelectObject(a_hdc, hBrush);
-		Ellipse(a_hdc, m_wLeftX + 50, m_wTopY + 10, m_wLeftX + 80, m_wBottomY - 10);
-
-		hBrush = CreateSolidBrush(RGB(255, 0, 0)); // Red
-		hOldBrush = (HBRUSH)SelectObject(a_hdc, hBrush);
-		Ellipse(a_hdc, m_wLeftX + 90, m_wTopY + 10, m_wLeftX + 120, m_wBottomY - 10);
-
-		hOldBrush = CreateSolidBrush(RGB(255, 255, 255));
 		SelectObject(a_hdc, hOldBrush);
 		DeleteObject(hBrush);
 
+		if (m_eLight == eBLUE) {
+			SelectObject(a_hdc, hOldPen);
+			DeleteObject(hPen);
+		}
 	}
-	void DrawLight(const HDC& a_hdc, UINT uNum)
+	void DrawYellow(const HDC& a_hdc)
 	{
-		HBRUSH hBrush = CreateSolidBrush(RGB(1, 0, 255)); // Blue
+		HPEN hPen, hOldPen;
+
+		if (m_eLight == eYELLOW) {
+			hPen = CreatePen(PS_SOLID, 5, RGB(0, 0, 0));
+			hOldPen = (HPEN)SelectObject(a_hdc, hPen);
+		}
+
+		HBRUSH hBrush = CreateSolidBrush(RGB(255, 228, 0)); // Yellow
 		HBRUSH hOldBrush = (HBRUSH)SelectObject(a_hdc, hBrush);
-		switch (uNum) {
-		case 1: Ellipse(a_hdc, m_wLeftX + 10, m_wTopY + 10, m_wLeftX + 40, m_wBottomY - 10); break;
-		case 2: Ellipse(a_hdc, m_wLeftX + 50, m_wTopY + 10, m_wLeftX + 80, m_wBottomY - 10); break;
-		case 3:Ellipse(a_hdc, m_wLeftX + 90, m_wTopY + 10, m_wLeftX + 120, m_wBottomY - 10); break;
+		Ellipse(a_hdc, m_wLeftX + 50, m_wTopY + 10, m_wLeftX + 80, m_wBottomY - 10);
+		SelectObject(a_hdc, hOldBrush);
+		DeleteObject(hBrush);
+
+		if (m_eLight == eYELLOW) {
+			SelectObject(a_hdc, hOldPen);
+			DeleteObject(hPen);
+		}
+	}
+	void DrawRed(const HDC& a_hdc)
+	{
+		HPEN hPen, hOldPen;
+
+		if (m_eLight == eRED) {
+			hPen = CreatePen(PS_SOLID, 5, RGB(0, 0, 0));
+			hOldPen = (HPEN)SelectObject(a_hdc, hPen);
+		}
+
+		HBRUSH hBrush = CreateSolidBrush(RGB(255, 0, 0)); // Red
+		HBRUSH hOldBrush = (HBRUSH)SelectObject(a_hdc, hBrush);
+		Ellipse(a_hdc, m_wLeftX + 90, m_wTopY + 10, m_wLeftX + 120, m_wBottomY - 10);
+		SelectObject(a_hdc, hOldBrush);
+		DeleteObject(hBrush);
+
+		if (m_eLight == eRED) {
+			SelectObject(a_hdc, hOldPen);
+			DeleteObject(hPen);
 		}
 	}
 private:
 	USHORT m_wLeftX{}, m_wRightX{}, m_wTopY{}, m_wBottomY{};
 	RECT m_rect;
+	ELIGHT m_eLight;
 };
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
@@ -208,13 +285,16 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 			if (cCars[i].IsRemainedToDraw()) {
 
 				if (bIsStopped) cCars[i].Draw(hdc, bIsStopped);
+
 				// Erase Left
 				hPen = CreatePen(PS_SOLID, 1, RGB(255, 255, 255));
 				hOldPen = (HPEN)SelectObject(hdc, hPen);
 				cCars[i].DrawWhiteRect(hdc);
 				SelectObject(hdc, hOldPen);
 				DeleteObject(hPen);
+
 			}
+
 		}
 		EndPaint(hWnd, &ps);
 		break;
@@ -229,13 +309,21 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 				cCars[i].CheckRemainedToDraw();
 			}
 			bIsStopped = true;
+			cTrafficLight.SetLight(eRED);
+			InvalidateRect(hWnd, NULL, TRUE);
+			break;
+		case 'y':
+		case 'Y':
+			cTrafficLight.SetLight(eYELLOW);
+			SetTimer(hWnd, STOP, 3000, NULL);
 			InvalidateRect(hWnd, NULL, TRUE);
 			break;
 		case 'e':
 		case 'E':
 			for (int i = 0; i < MAX_CAR; ++i) SetTimer(hWnd, i, nSpeed  * (i + 1), NULL);
-			InvalidateRect(hWnd, NULL, TRUE);
 			bIsStopped = false;
+			cTrafficLight.SetLight(eBLUE);
+			InvalidateRect(hWnd, NULL, TRUE);
 			break;
 		}
 	}
@@ -247,13 +335,21 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 			InvalidateRect(hWnd, NULL, TRUE);
 			break;
 		case MIDDLE_CAR:
-			//stCars[MIDDLE_CAR].wLeftX -= MOVE;
-			//stCars[MIDDLE_CAR].wRightX -= MOVE;
-
+			cCars[MIDDLE_CAR].SetToLeft();
+			cCars[MIDDLE_CAR].Move();
 			InvalidateRect(hWnd, NULL, TRUE);
 			break;
 		case BOTTOM_CAR:
 			cCars[BOTTOM_CAR].Move();
+			InvalidateRect(hWnd, NULL, TRUE);
+			break;
+		case STOP:
+			KillTimer(hWnd, STOP);
+			for (int i = 0; i < MAX_CAR; ++i) {
+				KillTimer(hWnd, i);
+				cCars[i].CheckRemainedToDraw();
+			}
+			bIsStopped = true;
 			InvalidateRect(hWnd, NULL, TRUE);
 			break;
 		}

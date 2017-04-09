@@ -1,17 +1,20 @@
 ﻿  3-3.cpp
-s:\kpu\4-1\api\api_practice\api_practice\api_practice\3-3.cpp(66): warning C4244: '=': conversion from 'LONG' to 'USHORT', possible loss of data
 s:\kpu\4-1\api\api_practice\api_practice\api_practice\3-3.cpp(67): warning C4244: '=': conversion from 'LONG' to 'USHORT', possible loss of data
-s:\kpu\4-1\api\api_practice\api_practice\api_practice\3-3.cpp(70): warning C4244: '=': conversion from 'LONG' to 'USHORT', possible loss of data
+s:\kpu\4-1\api\api_practice\api_practice\api_practice\3-3.cpp(68): warning C4244: '=': conversion from 'LONG' to 'USHORT', possible loss of data
 s:\kpu\4-1\api\api_practice\api_practice\api_practice\3-3.cpp(71): warning C4244: '=': conversion from 'LONG' to 'USHORT', possible loss of data
 s:\kpu\4-1\api\api_practice\api_practice\api_practice\3-3.cpp(72): warning C4244: '=': conversion from 'LONG' to 'USHORT', possible loss of data
 s:\kpu\4-1\api\api_practice\api_practice\api_practice\3-3.cpp(73): warning C4244: '=': conversion from 'LONG' to 'USHORT', possible loss of data
-s:\kpu\4-1\api\api_practice\api_practice\api_practice\3-3.cpp(76): warning C4244: '=': conversion from 'LONG' to 'USHORT', possible loss of data
+s:\kpu\4-1\api\api_practice\api_practice\api_practice\3-3.cpp(74): warning C4244: '=': conversion from 'LONG' to 'USHORT', possible loss of data
 s:\kpu\4-1\api\api_practice\api_practice\api_practice\3-3.cpp(77): warning C4244: '=': conversion from 'LONG' to 'USHORT', possible loss of data
-s:\kpu\4-1\api\api_practice\api_practice\api_practice\3-3.cpp(92): warning C4244: '=': conversion from 'LONG' to 'USHORT', possible loss of data
+s:\kpu\4-1\api\api_practice\api_practice\api_practice\3-3.cpp(78): warning C4244: '=': conversion from 'LONG' to 'USHORT', possible loss of data
+s:\kpu\4-1\api\api_practice\api_practice\api_practice\3-3.cpp(94): warning C4244: '=': conversion from 'LONG' to 'USHORT', possible loss of data
 s:\kpu\4-1\api\api_practice\api_practice\api_practice\3-3.cpp(104): warning C4244: '=': conversion from 'LONG' to 'USHORT', possible loss of data
-s:\kpu\4-1\api\api_practice\api_practice\api_practice\3-3.cpp(130): warning C4244: '=': conversion from 'LONG' to 'USHORT', possible loss of data
-s:\kpu\4-1\api\api_practice\api_practice\api_practice\3-3.cpp(132): warning C4244: '=': conversion from 'LONG' to 'USHORT', possible loss of data
-s:\kpu\4-1\api\api_practice\api_practice\api_practice\3-3.cpp(176): warning C4101: 'hBrush': unreferenced local variable
-s:\kpu\4-1\api\api_practice\api_practice\api_practice\3-3.cpp(176): warning C4101: 'hOldBrush': unreferenced local variable
+s:\kpu\4-1\api\api_practice\api_practice\api_practice\3-3.cpp(117): warning C4244: '=': conversion from 'LONG' to 'USHORT', possible loss of data
+s:\kpu\4-1\api\api_practice\api_practice\api_practice\3-3.cpp(123): warning C4244: '=': conversion from 'LONG' to 'USHORT', possible loss of data
+s:\kpu\4-1\api\api_practice\api_practice\api_practice\3-3.cpp(140): warning C4244: '=': conversion from 'LONG' to 'USHORT', possible loss of data
+s:\kpu\4-1\api\api_practice\api_practice\api_practice\3-3.cpp(165): warning C4244: '=': conversion from 'LONG' to 'USHORT', possible loss of data
+s:\kpu\4-1\api\api_practice\api_practice\api_practice\3-3.cpp(167): warning C4244: '=': conversion from 'LONG' to 'USHORT', possible loss of data
+s:\kpu\4-1\api\api_practice\api_practice\api_practice\3-3.cpp(254): warning C4101: 'hBrush': unreferenced local variable
+s:\kpu\4-1\api\api_practice\api_practice\api_practice\3-3.cpp(254): warning C4101: 'hOldBrush': unreferenced local variable
   API_Practice.vcxproj -> S:\KPU\4-1\API\API_Practice\API_Practice\Debug\API_Practice.exe
   API_Practice.vcxproj -> S:\KPU\4-1\API\API_Practice\API_Practice\Debug\API_Practice.pdb (Partial PDB)
