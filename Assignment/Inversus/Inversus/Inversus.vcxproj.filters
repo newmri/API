@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Game">
+      <UniqueIdentifier>{5b7eb711-e572-4ba4-a42d-c779a3b1d871}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Utility">
+      <UniqueIdentifier>{d01e9b7a-82c9-4497-aa80-7cf3bf1f780c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Obj">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Game\Obj\Character">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Game\GameManager">
+      <UniqueIdentifier>{67d6ac8d-8da5-47d6-bea1-3dc732e8c9e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\EntryPoint">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Game\Obj\Panel">
+      <UniqueIdentifier>{22e8f7f4-1658-4a55-b672-700b8c91cc6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Obj\Character\Player">
+      <UniqueIdentifier>{697f576d-1f62-4607-bd82-7b6270ae97c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Obj\Character\Enemy">
+      <UniqueIdentifier>{6ed66988-2bd2-4a6a-8009-c138e85b9e58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Obj\Panel\ActivePanel">
+      <UniqueIdentifier>{6d261098-222e-436d-8104-e4389f6ee610}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Obj\Panel\PlainPanel">
+      <UniqueIdentifier>{de25d687-30bf-47f5-b3d6-640dd1925ff7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Game\EntryPoint</Filter>
+    </ClCompile>
+    <ClCompile Include="CObject.cpp">
+      <Filter>Game\Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="CChracter.cpp">
+      <Filter>Game\Obj\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayer.cpp">
+      <Filter>Game\Obj\Character\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CGameManager.cpp">
+      <Filter>Game\GameManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CPanel.cpp">
+      <Filter>Game\Obj\Panel</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CObject.h">
+      <Filter>Game\Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="Define.h">
+      <Filter>Game\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="CPanel.h">
+      <Filter>Game\Obj\Panel</Filter>
+    </ClInclude>
+    <ClInclude Include="CActivePanel.h">
+      <Filter>Game\Obj\Panel\ActivePanel</Filter>
+    </ClInclude>
+    <ClInclude Include="CCharacter.h">
+      <Filter>Game\Obj\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="CEnemy.h">
+      <Filter>Game\Obj\Character\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="CGameManager.h">
+      <Filter>Game\GameManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayer.h">
+      <Filter>Game\Obj\Character\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlainPanel.h">
+      <Filter>Game\Obj\Panel\PlainPanel</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
